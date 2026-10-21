@@ -1,116 +1,80 @@
 <p align="center">
-  <img src="public/logo.svg" alt="驚弓之鳥 · Scarebird" width="720">
+  <img src="public/logo.svg" alt="惊弓之鸟 · Scarebird" width="680">
 </p>
 
-# 惊弓之鸟 · Scarebird
+<p align="center"><em>弦声一起，群鸟皆惊。</em></p>
 
-> 弦声一起，群鸟皆惊。
+<p align="center">
+  <a href="https://niyongsheng.github.io/scarebird/"><img src="https://img.shields.io/badge/Play%20Online-c5a059?style=for-the-badge" alt="Play Online"></a>
+  <a href="https://github.com/niyongsheng/scarebird/actions/workflows/pages.yml"><img src="https://github.com/niyongsheng/scarebird/actions/workflows/pages.yml/badge.svg" alt="Deploy"></a>
+  <img src="https://img.shields.io/badge/Vite-5-646CFF?style=for-the-badge&logo=vite&logoColor=white" alt="Vite 5">
+  <img src="https://img.shields.io/badge/Phaser-3-8A2BE2?style=for-the-badge" alt="Phaser 3">
+</p>
 
-一款基于 **Boids 鸟群算法**、支持**摄像头手势操作**的星野射艺小游戏。你引弓虚发，弓上无箭，只以弦声惊起飞鸟，守住星田里的星穗。
-Vite + Phaser 3，桌面 / 手机均可游玩。手势识别使用 MediaPipe Hands，视频只在浏览器本机处理，不上传。
-深空、飞鸟、星屑与星田光点全部由 Canvas 程序绘制，不依赖外部美术素材。
+<p align="center">
+  一款基于 <b>Boids 鸟群算法</b>、支持 <b>摄像头手势</b> 的星野射艺小游戏。<br>
+  引弓虚发，弓上无箭，只以弦声惊起飞鸟，守住星田里的星穗。
+</p>
 
-## 运行
+<p align="center">
+  <img src="docs/preview.jpg" alt="游戏画面" width="100%">
+</p>
+
+## 玩法
+
+九十秒内，飞鸟成波次从画面外飞入星田，落地啄食会消耗星穗；星穗见底或时间耗尽，本局结束。
+
+- **瞄准** — 移动鼠标、手指或食指指尖，准星即弦声落点
+- **拉弓** — 按住蓄力，蓄得越满，弦声波及范围越大
+- **放弦** — 松手的瞬间，声波飞向落点，范围内鸟群受惊四散
+- **连击** — 连续命中最高 ×9，连击窗口 8 秒；一弦惊起 6 只以上触发“惊群”加分
+- **共鸣** — 命中积攒“弦鸣”，满弦后下一弦范围 ×1.55、得分 ×2
+- **金羽回穗** — 惊起金羽可补回 6 点星穗
+
+| 鸟种 | 分值 | 特点 |
+| --- | --- | --- |
+| 麻雀 | 1 | 最常见 |
+| 乌鸦 | 2 | 飞得更快 |
+| 金羽 | 5 | 最灵敏，可回穗 |
+
+弦囊常备六道弦音，每放一弦约 0.45 秒聚回一道。结算按总分评出段位：初闻弦音 → 弦上清风 → 一弦惊群 → 惊弓之鸟 → 百步穿杨 → 射日神手。
+
+## 操作
+
+| 设备 | 瞄准 | 拉弓 | 放弦 |
+| --- | --- | --- | --- |
+| 鼠标 | 移动 | 按住左键 | 松开 |
+| 触控 | 手指位置 | 按住屏幕 | 松开 |
+| 手势 | 食指指尖 | 张开拇指与食指 | 合拢拇指与食指 |
+
+`P` / `Esc` 暂停 · `M` 静音 · `G` 对局中开关手势 · 结算页 `R` / `Space` 再来一局、`S` 分享、`Esc` 返回
+
+## 本地运行
 
 ```bash
 npm install
 npm run dev
 ```
 
-浏览器打开终端提示的网址（默认 http://localhost:5173/）。
+打开终端提示的网址（默认 http://localhost:5173/）。摄像头手势需要 `localhost` 或 HTTPS；MediaPipe 从 CDN 加载，失败时自动降级为鼠标 / 触控。
 
-- 摄像头手势需要 `localhost` 或 HTTPS 环境；手机连同一 Wi-Fi 用局域网网址时，摄像头通常不可用，可使用触控游玩。
-- 手势引擎（MediaPipe）从 CDN 加载；若网络不可达，会自动降级为鼠标 / 触控，不影响游玩。
+## 部署
 
-## 玩法
+推送到 `main` 后，GitHub Actions 会自动构建并发布到 [GitHub Pages](https://niyongsheng.github.io/scarebird/)；也可在 Actions 页手动触发 `Deploy to GitHub Pages`。
 
-九十秒内，飞鸟会成波次从画面外飞入星田。飞鸟落地啄食会消耗星穗；星穗见底或时间耗尽，本局结束。
+<details>
+<summary><b>技术细节</b></summary>
 
-- **瞄准**：鸟群飞行的位置就是弦声落点
-- **拉弓**：蓄力越满，弦声波及范围越大（准星圆环即惊吓范围）
-- **放弦**：松弦的一瞬，声波飞向准星落点，范围内鸟群受惊四散
-- **弦囊**：袋中常备六道弦音，每放一弦消耗 1 道，约 0.45 秒聚回 1 道；弦尽时需稍候再放
-- **连击**：连续命中可把倍率叠到 ×9，连击窗口 8 秒；一弦惊起 6 只以上还有“惊群”额外加分
-- **共鸣**：命中蓄“弦鸣”，满弦后准星出现青环，下一弦范围 ×1.55、得分 ×2
-- **金羽回穗**：惊起金羽可补回 6 点星穗
-- **鸟种**：麻雀 1 分、乌鸦 2 分、金羽 5 分；金羽更灵敏，需要更近的弦声
+- **鸟群** — `src/js/Boids.js` 为完整 Reynolds Boids：分离、对齐、聚合、寻路、受惊逃逸，64px 空间网格支撑 200+ 只鸟同屏
+- **手势** — `src/js/GestureController.js` 封装 MediaPipe Hands：食指指尖定位准星，拇指与食指距离映射蓄力，450ms 无结果判定脱手
+- **音效** — `src/js/Audio.js` 全部由 WebAudio 现场合成：分层蓄力、飞行哨音、五层命中、鸟鸣与连击；支持左右声像与轻压缩
+- **美术** — 深空、飞鸟、星屑、弓与星球地平线均由 Canvas 程序绘制，无外部美术素材
+- **调试** — 控制台可访问 `window.__game`，例如 `window.__game.scene.start('Game', { useGesture: false })`
 
-弦囊里没有实体箭：拉弓时弦上只凝出一线声光，离弦后化为一道声波；袋中六道弦音取“六律”之意。数量变化的是“弦音”，不是箭。
-
-结算按总分评出段位：初闻弦音 → 弦上清风 → 一弦惊群 → 惊弓之鸟 → 百步穿杨 → 射日神手。历史最佳保存在浏览器 localStorage。
-
-## 操作
-
-| 设备 | 瞄准 | 拉弓 | 放弦 |
-| --- | --- | --- | --- |
-| 鼠标 | 移动鼠标 | 按住左键 | 松开左键 |
-| 触控 | 手指位置 | 按住屏幕 | 松开 |
-| 手势 | 食指指尖 | 张开拇指与食指 | 合拢拇指与食指 |
-
-菜单页可启用摄像头手势。手势模式下鼠标仍然可用，手离开镜头时会短暂保留蓄力，超过 0.5 秒自动取消。
-
-- `P` / `Esc`：暂停
-- `M`：静音
-- `G`：对局中临时开关手势瞄准（摄像头已在菜单启用时）
-- 结算页 `R` / `Space` 再来一局，`S` 分享战绩，`Esc` 返回主菜单
-
-## 分享战绩
-
-结算页点击“分享战绩”或按 `S`，会把战报合成一张带题签、页脚和印章的 PNG，依次尝试：
-
-1. 系统分享面板（Web Share API，手机 / 支持的浏览器）
-2. 复制图片到剪贴板
-3. 下载为 `scarebird-*.png`
-
-分享图包含结算画面、总分 / 段位 / 惊起数 / 最高连击 / 命中率 / 剩余星穗 / 用时，以及 `惊弓之鸟 · SCAREBIRD` 页脚。
-
-## 鸟群算法
-
-`src/js/Boids.js` 是完整的 Reynolds Boids 实现，每帧对每只鸟计算：
-
-- **分离**：近距离排斥，避免画面中的鸟挤成一团
-- **对齐**：与邻居的平均速度保持一致
-- **聚合**：向邻居质心靠拢
-- **目标寻路**：先在空中盘桓，再俯冲向各自的星田落点
-- **受惊逃逸**：弦声落点附近的鸟获得远离爆心的冲量，并进入 panic 状态飞离画面
-- **空间网格**：64px 均匀网格做邻居查询，200+ 只鸟依然流畅
-
-鸟类性格（速度、惊吓抗性、分值、啄食量）集中在 `src/js/constants.js` 的 `BIRD_TYPES` 中，改起来很直接。
-
-## 手势识别
-
-`src/js/GestureController.js` 封装 MediaPipe Hands：
-
-- 食指指尖 `landmark[8]` → 准星位置（做自拍镜像，手向右移准星向右）
-- 拇指尖 `landmark[4]` 与食指指尖的距离 → 蓄力值
-- 手掌进入画面后平滑跟踪；450ms 无结果视为脱手
-- 取景框、骨架、食指瞄准环与拇指—食指拉弓线绘制在页面右下角的摄像头 HUD 中
-
-摄像头权限、MediaPipe CDN 任一失败都会自动降级为鼠标模式，并在菜单提示。
-
-## 调试
-
-浏览器控制台可访问 `window.__game`：
-
-```js
-window.__game.scene.getScenes(true).map((s) => s.scene.key)
-window.__game.scene.start('Game', { useGesture: false })
-```
-
-对局中可直接改场景字段做平衡测试：
-
-```js
-const g = window.__game.scene.getScene('Game')
-g.timeLeft = 10
-g.grain = 5
-g.boids.spawnWave(12, 60)
-```
+</details>
 
 ## 素材与致谢
 
 - 灵感取自《战国策·楚策四》更羸虚弓落雁：“闻弦音，引而高飞，故疮陨也。”
-- 深空、飞鸟、星屑、感叹号、弓与星球地平线全部由 Canvas 程序绘制，不依赖外部美术素材。
-- **LXGW Seal / 霞鹜篆书**（SIL Open Font License 1.1）——印章中的小篆“惊”，以及 logo 印章字形。https://github.com/lxgw/LxgwSeal
-  授权原文见 `public/fonts/OFL-LXGWSeal.txt`。
-- **Noto Serif TC**（SIL Open Font License 1.1）——logo 标题与文案字形（已转为矢量轮廓）。https://fonts.google.com/noto/specimen/Noto+Serif+TC
-- 界面字体使用系统楷体/宋体（Kaiti TC / Kaiti SC / STKaiti；Songti TC / Songti SC / STSong），不额外分发字体文件。
+- **LXGW Seal / 霞鹜篆书**（SIL OFL 1.1）— 印章小篆字形，授权见 `public/fonts/OFL-LXGWSeal.txt`
+- **Noto Serif TC**（SIL OFL 1.1）— logo 标题字形（已转曲）
