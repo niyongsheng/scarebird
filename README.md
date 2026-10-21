@@ -6,7 +6,6 @@
 
 <p align="center">
   <a href="https://niyongsheng.github.io/scarebird/"><img src="https://img.shields.io/badge/Play%20Online-c5a059?style=for-the-badge" alt="Play Online"></a>
-  <a href="https://github.com/niyongsheng/scarebird/actions/workflows/pages.yml"><img src="https://github.com/niyongsheng/scarebird/actions/workflows/pages.yml/badge.svg" alt="Deploy"></a>
   <img src="https://img.shields.io/badge/Vite-5-646CFF?style=for-the-badge&logo=vite&logoColor=white" alt="Vite 5">
   <img src="https://img.shields.io/badge/Phaser-3-8A2BE2?style=for-the-badge" alt="Phaser 3">
 </p>
@@ -14,10 +13,6 @@
 <p align="center">
   一款基于 <b>Boids 鸟群算法</b>、支持 <b>摄像头手势</b> 的星野射艺小游戏。<br>
   引弓虚发，弓上无箭，只以弦声惊起飞鸟，守住星田里的星穗。
-</p>
-
-<p align="center">
-  <img src="docs/preview.jpg" alt="游戏画面" width="100%">
 </p>
 
 ## 玩法
@@ -56,11 +51,9 @@ npm install
 npm run dev
 ```
 
-打开终端提示的网址（默认 http://localhost:5173/）。摄像头手势需要 `localhost` 或 HTTPS；MediaPipe 从 CDN 加载，失败时自动降级为鼠标 / 触控。
-
 ## 部署
 
-推送到 `main` 后，GitHub Actions 会自动构建并发布到 [GitHub Pages](https://niyongsheng.github.io/scarebird/)；也可在 Actions 页手动触发 `Deploy to GitHub Pages`。
+推送到 `main` 后，GitHub Actions 会自动构建并发布到 [GitHub Pages](https://niyongsheng.github.io/scarebird/)；
 
 <details>
 <summary><b>技术细节</b></summary>
@@ -77,4 +70,3 @@ npm run dev
 
 - 灵感取自《战国策·楚策四》更羸虚弓落雁：“闻弦音，引而高飞，故疮陨也。”
 - **LXGW Seal / 霞鹜篆书**（SIL OFL 1.1）— 印章小篆字形，授权见 `public/fonts/OFL-LXGWSeal.txt`
-- **Noto Serif TC**（SIL OFL 1.1）— logo 标题字形（已转曲）
