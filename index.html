@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <meta name="theme-color" content="#05070c" />
+  <meta name="description" content="驚弓之鳥 Scarebird：絃聲一起，群鳥皆驚。基於 Boids 鳥群算法、支援攝影機手勢操作的趣味小遊戲。" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <title>驚弓之鳥 · Scarebird</title>
+  <style>
+    @font-face {
+      font-family: "LXGW Seal";
+      src: url("fonts/LXGWSeal-Regular.ttf") format("truetype");
+      font-weight: normal;
+      font-style: normal;
+      font-display: block;
+    }
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background: #05070c;
+      overflow: hidden;
+      touch-action: none;
+      -webkit-user-select: none;
+      user-select: none;
+    }
+    #game {
+      width: 100%;
+      height: 100%;
+    }
+    #game canvas {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div id="game"></div>
+
+  <!-- 手势摄像头 HUD：由 GestureController 控制显隐 / 更新骨架 -->
+  <div id="gesture-hud" aria-hidden="true">
+    <div class="gesture-frame">
+      <video class="input_video" playsinline muted></video>
+      <canvas class="hand-overlay"></canvas>
+      <div class="gesture-badge">
+        <span class="gesture-dot"></span>
+        <span class="gesture-status">等待手勢</span>
+      </div>
+      <div class="gesture-corner tl"></div>
+      <div class="gesture-corner tr"></div>
+      <div class="gesture-corner bl"></div>
+      <div class="gesture-corner br"></div>
+    </div>
+    <p class="gesture-tip">食指瞄準 · 拇指食指張開拉弓 · 合攏放弦</p>
+  </div>
+
+  <div id="rotate-hint">
+    <div class="rotate-glyph">⟳</div>
+    <p>請橫屏遊玩</p>
+    <small>橫屏後可獲得完整視野 · 觸控拉弓同樣順手</small>
+  </div>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Scarebird 弓弦">
+  <defs>
+    <radialGradient id="seal" cx="34%" cy="26%" r="88%">
+      <stop offset="0" stop-color="#d05c43"/>
+      <stop offset="0.58" stop-color="#b8442f"/>
+      <stop offset="1" stop-color="#8e2d1e"/>
+    </radialGradient>
+    <clipPath id="plate">
+      <rect width="64" height="64" rx="13"/>
+    </clipPath>
+  </defs>
+
+  <g clip-path="url(#plate)">
+    <rect width="64" height="64" fill="url(#seal)"/>
+  </g>
+  <rect x="4.5" y="4.5" width="55" height="55" rx="9.5" fill="none" stroke="#f6e8d2" stroke-opacity="0.45" stroke-width="1"/>
+
+  <!-- 弓与箭：取自游戏印章中的弓形符号 -->
+  <g fill="none" stroke="#f6e8d2" stroke-linecap="round">
+    <path d="M27 11C42 16 44 51 27 56" stroke-width="4.1" stroke-opacity="0.97"/>
+    <path d="M27 11V56" stroke-width="1.7" stroke-opacity="0.8"/>
+    <path d="M27 33.5H50" stroke-width="2.7" stroke-opacity="0.97"/>
+    <path d="M27 33.5L18.6 29M27 33.5L18.6 38" stroke-width="1.7" stroke-opacity="0.9"/>
+  </g>
+  <path d="M56.5 33.5L48.4 29.3V37.7Z" fill="#f6e8d2" opacity="0.97"/>
+</svg>

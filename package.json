@@ -1,0 +1,18 @@
+{
+  "name": "scarebird",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "惊弓之鸟 Scarebird — 基于 Boids 鸟群算法、支持摄像头手势操作的小游戏",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "phaser": "^3.80.1"
+  },
+  "devDependencies": {
+    "vite": "^5.4.0"
+  }
+}
