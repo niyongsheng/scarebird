@@ -285,7 +285,7 @@ export class MenuScene extends Phaser.Scene {
       letterSpacing: 1,
       alpha: 0.75,
     }).setDepth(21);
-    makeText(this, GAME_W - 40, GAME_H - 54, 'SCAREBIRD · 星野手繪', {
+    makeText(this, GAME_W - 40, GAME_H - 54, 'F 全屏 · SCAREBIRD · 星野手繪', {
       size: 10,
       color: S.gold,
       letterSpacing: 3,

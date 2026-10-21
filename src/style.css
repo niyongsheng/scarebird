@@ -1,4 +1,81 @@
-/* 画布由 Phaser 接管；这里只处理手势摄像头 HUD 与页面基底 */
+/* 画布由 Phaser 接管；这里只处理右上角操作、手势摄像头 HUD 与页面基底 */
+
+#corner-actions {
+  position: fixed;
+  top: max(14px, env(safe-area-inset-top, 0px));
+  right: max(14px, env(safe-area-inset-right, 0px));
+  z-index: 70;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.corner-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  color: #c5a059;
+  background: rgba(7, 11, 17, 0.55);
+  border: 1px solid rgba(197, 160, 89, 0.35);
+  border-radius: 2px;
+  backdrop-filter: blur(4px);
+  cursor: pointer;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.corner-btn:hover {
+  color: #e6d3a3;
+  background: rgba(7, 11, 17, 0.8);
+  border-color: rgba(197, 160, 89, 0.85);
+}
+
+.corner-btn:active {
+  color: #fff3d0;
+  border-color: rgba(230, 211, 163, 0.95);
+}
+
+.corner-btn:focus-visible {
+  outline: 1px solid rgba(230, 211, 163, 0.9);
+  outline-offset: 2px;
+}
+
+.corner-btn .fs-icon {
+  width: 17px;
+  height: 17px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: square;
+}
+
+.corner-btn .gh-icon {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+}
+
+#fullscreen-toggle[hidden] {
+  display: none;
+}
+
+#fullscreen-toggle .fs-icon-exit {
+  display: none;
+}
+
+#fullscreen-toggle.is-active .fs-icon-enter {
+  display: none;
+}
+
+#fullscreen-toggle.is-active .fs-icon-exit {
+  display: block;
+}
+
 #gesture-hud {
   position: fixed;
   right: 18px;

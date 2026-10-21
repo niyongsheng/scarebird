@@ -338,8 +338,8 @@ export class GameScene extends Phaser.Scene {
       .setAlpha(0.7);
 
     const keyHint = this.gesture.available
-      ? 'P 暫停    M 靜音    G 手勢'
-      : 'P 暫停    M 靜音';
+      ? 'P 暫停    M 靜音    G 手勢    F 全屏'
+      : 'P 暫停    M 靜音    F 全屏';
     makeText(this, 60, GAME_H - 34, keyHint, {
       size: 10.5,
       color: S.dim,

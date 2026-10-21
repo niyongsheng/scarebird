@@ -2,6 +2,7 @@ import Phaser from 'phaser';
 import './style.css';
 import { GAME_W, GAME_H } from './js/constants.js';
 import { sfx } from './js/Audio.js';
+import { initFullscreen } from './js/fullscreen.js';
 import { BootScene } from './scenes/BootScene.js';
 import { BackdropScene } from './scenes/BackdropScene.js';
 import { MenuScene } from './scenes/MenuScene.js';
@@ -27,6 +28,9 @@ const game = new Phaser.Game({
   },
   scene: [BootScene, BackdropScene, MenuScene, GameScene, ResultScene],
 });
+
+// 全屏按钮与 F 快捷键
+initFullscreen();
 
 // 首次交互时解锁 WebAudio
 window.addEventListener('pointerdown', () => sfx.ensure(), { once: true });
