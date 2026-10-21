@@ -52,6 +52,39 @@ export function isFullscreenSupported() {
   return !!getRequestMethod();
 }
 
+function isIOS() {
+  return (
+    /iP(hone|ad|od)/.test(navigator.userAgent) ||
+    (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)
+  );
+}
+
+/** 从主画面启动（已添加到主屏幕）时本身就是全屏，无需再请求 */
+function isStandaloneDisplay() {
+  const standalone =
+    window.matchMedia &&
+    window.matchMedia('(display-mode: fullscreen), (display-mode: standalone)').matches;
+  return standalone || window.navigator.standalone === true;
+}
+
+let hintTimer = 0;
+
+function hideHint() {
+  const hint = document.getElementById('fullscreen-hint');
+  if (hint) hint.hidden = true;
+}
+
+function showUnsupportedHint() {
+  const hint = document.getElementById('fullscreen-hint');
+  if (!hint) return;
+  hint.textContent = isIOS()
+    ? 'iPhone 的瀏覽器不支援網頁全屏：請點 Safari 的「分享」→「加入主畫面」，從主畫面啟動即可全屏遊玩。'
+    : '目前瀏覽器不支援全屏：請改用系統瀏覽器（Chrome / Safari）開啟，或將遊戲加入主畫面。';
+  hint.hidden = false;
+  window.clearTimeout(hintTimer);
+  hintTimer = window.setTimeout(hideHint, 8000);
+}
+
 async function lockLandscape() {
   // 手机横屏游戏：全屏后尝试锁定横向，桌面端 / iOS 会直接忽略
   const orientation = screen.orientation;
@@ -92,30 +125,48 @@ export async function toggleFullscreen() {
 
 /**
  * 绑定右上角按钮与 F 快捷键，并同步图标状态。
- * 浏览器不支持（如 iPhone Safari）时隐藏按钮。
+ * 不支持 Fullscreen API 的浏览器（如 iPhone Safari）仍保留按钮，
+ * 点击时引导「加入主画面」；从主画面启动时本身就是全屏。
  */
 export function initFullscreen() {
   const button = document.getElementById('fullscreen-toggle');
   if (!button) return;
 
-  if (!isFullscreenSupported()) {
+  const hint = document.getElementById('fullscreen-hint');
+  hint?.addEventListener('click', hideHint);
+
+  if (isStandaloneDisplay()) {
     button.hidden = true;
     return;
   }
+
+  const supported = isFullscreenSupported();
   button.hidden = false;
+  if (!supported) {
+    button.setAttribute('aria-label', '全屏說明');
+    button.title = '此瀏覽器不支援全屏，點擊查看說明';
+  }
 
   const sync = () => {
     const active = isFullscreenActive();
     button.classList.toggle('is-active', active);
-    button.setAttribute('aria-label', active ? '退出全屏 (F)' : '进入全屏 (F)');
-    button.title = active ? '退出全屏 (F)' : '全屏游玩 (F)';
+    if (supported) {
+      button.setAttribute('aria-label', active ? '退出全屏 (F)' : '進入全屏 (F)');
+      button.title = active ? '退出全屏 (F)' : '全屏遊玩 (F)';
+    }
   };
 
-  button.addEventListener('click', async (event) => {
+  const requestToggle = async () => {
+    const wasActive = isFullscreenActive();
+    const active = await toggleFullscreen();
+    sync();
+    if (!wasActive && !active) showUnsupportedHint();
+  };
+
+  button.addEventListener('click', (event) => {
     event.preventDefault();
     event.stopPropagation();
-    await toggleFullscreen();
-    sync();
+    requestToggle();
   });
 
   for (const name of CHANGE_EVENTS) {
@@ -134,6 +185,6 @@ export function initFullscreen() {
     if (tag === 'INPUT' || tag === 'TEXTAREA' || (target && target.isContentEditable)) return;
 
     event.preventDefault();
-    toggleFullscreen().then(sync);
+    requestToggle();
   });
 }

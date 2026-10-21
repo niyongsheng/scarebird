@@ -76,6 +76,32 @@
   display: block;
 }
 
+#fullscreen-hint {
+  position: fixed;
+  top: calc(max(14px, env(safe-area-inset-top, 0px)) + 94px);
+  right: max(14px, env(safe-area-inset-right, 0px));
+  z-index: 70;
+  box-sizing: border-box;
+  max-width: min(290px, calc(100vw - 28px));
+  padding: 10px 12px;
+  color: #e6d3a3;
+  font-family: "Kaiti TC", "Kaiti SC", "STKaiti", "KaiTi", "Songti TC", "Songti SC", serif;
+  font-size: 12px;
+  line-height: 1.65;
+  letter-spacing: 0.5px;
+  text-align: right;
+  background: rgba(5, 7, 12, 0.92);
+  border: 1px solid rgba(197, 160, 89, 0.45);
+  border-radius: 2px;
+  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(6px);
+  cursor: pointer;
+}
+
+#fullscreen-hint[hidden] {
+  display: none;
+}
+
 #gesture-hud {
   position: fixed;
   right: 18px;
