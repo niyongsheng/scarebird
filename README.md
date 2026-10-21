@@ -2,7 +2,7 @@
   <img src="public/logo.svg" alt="惊弓之鸟 · Scarebird" width="680">
 </p>
 
-<p align="center"><em>弦声一起，群鸟皆惊。</em></p>
+<p align="center"><em>灵感取自《战国策·楚策四》更羸虚弓落雁：“闻弦音，引而高飞，故疮陨也。”</em></p>
 
 <p align="center">
   <a href="https://niyongsheng.github.io/scarebird/"><img src="https://img.shields.io/badge/Play%20Online-c5a059?style=for-the-badge" alt="Play Online"></a>
@@ -17,7 +17,7 @@
 
 ## 玩法
 
-九十秒内，飞鸟成波次从画面外飞入星田，落地啄食会消耗星穗；星穗见底或时间耗尽，本局结束。
+九十秒内，飞鸟成波次从画面外飞入星田，落地啄食会消耗星穗；星穗见底或时间耗尽，游戏结束。
 
 - **瞄准** — 移动鼠标、手指或食指指尖，准星即弦声落点
 - **拉弓** — 按住蓄力，蓄得越满，弦声波及范围越大
@@ -68,5 +68,4 @@ npm run dev
 
 ## 素材与致谢
 
-- 灵感取自《战国策·楚策四》更羸虚弓落雁：“闻弦音，引而高飞，故疮陨也。”
 - **LXGW Seal / 霞鹜篆书**（SIL OFL 1.1）— 印章小篆字形，授权见 `public/fonts/OFL-LXGWSeal.txt`
